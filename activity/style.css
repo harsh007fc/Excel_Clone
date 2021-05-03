@@ -26,12 +26,12 @@ body{
     background-color: lightgrey;
     display: flex;
     min-width:100vw;
-    overflow-x: auto;
+   
 }
 
 .add_sheet_container{
     height:100%;
-    width:40px;
+    min-width:30px;
     border:1px solid grey;
     display: flex;
     justify-content: center;
@@ -47,15 +47,28 @@ body{
 .sheet_list{
    display: flex;
    height:100%;
+   overflow-x: auto;
    /* align-items: center; */
 
 }
 
+/* code to remove scrollbar but its functionality remains in app */
+.sheet_list::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .example {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
 .sheet{
-    width:60px;
+    min-width:60px;
     display:flex;
     justify-content: center;
     align-items: center;
+    overflow-x: auto;
 }
 
 .active_sheet{
