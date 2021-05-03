@@ -18,9 +18,7 @@ body{
 
 
 
-.grid{
-    height:calc(100vh - ( 80px + 30px + 30px));
-}
+
 
 
 .sheets{
@@ -62,4 +60,59 @@ body{
 
 .active_sheet{
     background-color: aliceblue;
+}
+
+/* grid container css */
+.top_left_block{
+    height:30px;
+    width:25px;
+    background-color: gray;
+}
+
+.top_row{
+    height:30px;
+    background-color: lightgreen;
+    display: flex;
+    position:absolute;
+    top:0px;
+    left:25px;
+
+}
+
+.left_col{
+    width:25px;
+    border:1px solid red;
+}
+.left_col_box{
+    height:30px;
+    background-color: lightgreen;
+    text-align: center;
+    border:1px solid;
+}
+
+.col{
+    /* flex: 1;/doesnot worl on flex  */
+    min-width:80px;
+    border:1px solid;
+    min-height:30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.row{
+    display: flex;
+}
+
+
+
+.grid_container{
+    position:relative;
+    height:calc(100vh - ( 80px + 30px + 30px));
+    overflow: auto;
+    position: relative;
+}
+.grid{
+    position: absolute;
+    top:30px;
+    left:25px;
 }
