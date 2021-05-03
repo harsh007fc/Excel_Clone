@@ -19,11 +19,47 @@ body{
 
 
 .grid{
-    height:calc(100vh - ( 80px + 50px + 30px));
+    height:calc(100vh - ( 80px + 30px + 30px));
 }
 
 
 .sheets{
-    height:50px;
-    background-color: lightgreen;
+    height:30px;
+    background-color: lightgrey;
+    display: flex;
+    min-width:100vw;
+    overflow-x: auto;
+}
+
+.add_sheet_container{
+    height:100%;
+    width:40px;
+    border:1px solid grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon{
+    font-size: 1.2rem;
+    color:#2cc42c;
+    
+}
+
+.sheet_list{
+   display: flex;
+   height:100%;
+   /* align-items: center; */
+
+}
+
+.sheet{
+    width:60px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.active_sheet{
+    background-color: aliceblue;
 }
