@@ -190,11 +190,13 @@ body{
 .col{
     /* flex: 1;/doesnot worl on flex  */
     min-width:80px;
+    max-width:80px;
     border:1px solid;
     min-height:30px;
-    display: flex;
+    /* removed due to lcr buttons */
+    /* display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
 }
 .row{
     display: flex;

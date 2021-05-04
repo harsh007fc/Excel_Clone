@@ -7,6 +7,13 @@ let firstSheet = document.querySelector(".sheet");
 let allCells = document.querySelectorAll(".grid .col");
 let addressBar = document.querySelector(".address_box");
 
+
+let leftBtn = document.querySelector(".left");
+let centerBtn = document.querySelector(".center");
+let rightBtn = document.querySelector(".right");
+
+let fontBtn = document.querySelector(".font_size");
+
 firstSheet.addEventListener("click",handleActiveSheet);
 addBtnContainer.addEventListener("click",function(){
     let sheetsArr = document.querySelectorAll(".sheet");
@@ -51,3 +58,52 @@ for(let i = 0; i < allCells.length; i++)
 
 //budefault select
 allCells[0].click();
+
+//align mbuttons
+leftBtn.addEventListener("click",function()
+{
+    let address = addressBar.value;
+    let {rid ,cid} = getRidCid(address);
+    let cell = document.querySelector(`.col[rid="${rid}"][cid="${cid}"]`);
+
+    cell.style.textAlign = "left";
+})
+centerBtn.addEventListener("click",function()
+{
+    let address = addressBar.value;
+    let {rid ,cid} = getRidCid(address);
+    let cell = document.querySelector(`.col[rid="${rid}"][cid="${cid}"]`);
+
+    cell.style.textAlign = "center";
+})
+rightBtn.addEventListener("click",function()
+{
+    let address = addressBar.value;
+    let {rid ,cid} = getRidCid(address);
+    let cell = document.querySelector(`.col[rid="${rid}"][cid="${cid}"]`);
+
+    cell.style.textAlign = "right";
+})
+
+//to get back rowid and colid
+// its like reversing of oue task to converting of col no and row number into numbers
+function getRidCid(address)
+{//A1
+    let cellColAdr = address.charCodeAt(0);
+    let cellRowAdr = address.slice(1);
+    let cid = cellColAdr - 65;
+    let rid = Number(cellRowAdr) - 1;
+    return {rid,cid};
+
+}
+
+
+fontBtn.addEventListener("change",function()
+{
+    let fontSize = fontBtn.value;
+    let address = addressBar.value;
+    let {rid ,cid} = getRidCid(address);
+    let cell = document.querySelector(`.col[rid="${rid}"][cid="${cid}"]`);
+
+    cell.style.fontSize = fontSize+"px";
+})
