@@ -3,6 +3,10 @@ let sheetList = document.querySelector(".sheet_list");
 
 let firstSheet = document.querySelector(".sheet");
 
+
+let allCells = document.querySelectorAll(".grid .col");
+let addressBar = document.querySelector(".address_box");
+
 firstSheet.addEventListener("click",handleActiveSheet);
 addBtnContainer.addEventListener("click",function(){
     let sheetsArr = document.querySelectorAll(".sheet");
@@ -20,7 +24,6 @@ addBtnContainer.addEventListener("click",function(){
     newSheet.addEventListener("click",handleActiveSheet)
 })
 
-
 function handleActiveSheet(e){
     let mySheet = e.currentTarget;
     let sheetsArr = document.querySelectorAll(".sheet");
@@ -33,3 +36,18 @@ function handleActiveSheet(e){
         mySheet.classList.add("active_sheet");
     }
 }
+
+for(let i = 0; i < allCells.length; i++)
+{
+    allCells[i].addEventListener("click",function handleCells(){
+       let rid =  Number(allCells[i].getAttribute("rid"));
+       let cid = Number(allCells[i].getAttribute("cid"));
+       let rowAdd = rid + 1;
+       let colAdd = String.fromCharCode(cid + 65);
+       let address = colAdd + rowAdd;
+       addressBar.value = address;
+    })
+}
+
+//budefault select
+allCells[0].click();

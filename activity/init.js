@@ -21,7 +21,7 @@
                 string +=  `<div class="row">`
                 for(let j = 0 ; j < 26 ; j++)
                 {
-                    string += `<div class="col">${i + 1}${String.fromCharCode(65 + j)}</div>`;
+                    string += `<div class="col" rid=${i} cid=${j} contenteditable="true"></div>`;
                 }
                 string += "</div>";
             }
