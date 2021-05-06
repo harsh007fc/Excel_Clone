@@ -1,12 +1,12 @@
 body{
     margin:0;
 }
+
+
 *{
     box-sizing: border-box;
     /* border:1px solid red; */
 }
-
-
 
 
 /* ==================================================MENU BAR STYLING======================= */
@@ -203,18 +203,21 @@ body{
 }
 
 
-
 .grid_container{
     position:relative;
     height:calc(100vh - ( 80px + 30px + 30px));
     overflow: auto;
     position: relative;
 }
+
+
 .grid{
     position: absolute;
     top:30px;
     left:25px;
 }
+
+
 
 
 

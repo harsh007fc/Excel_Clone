@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,12 +10,13 @@
     <link rel="stylesheet" href="./style.css">
     <title>Excel</title>
 </head>
+
 <body>
     <div class="menu_container">
-    <div class="formating_container">
-        <div class="subgroup">
-            
-                <select  id="font_family" class="font_family">
+        <div class="formating_container">
+            <div class="subgroup">
+
+                <select id="font_family" class="font_family">
                     <option value="Arial">Arial</option>
                     <option value="Calibri">Calibri</option>
                     <option value="Gill Sans">Gill Sans</option>
@@ -22,39 +24,41 @@
                     <option value="Helvetica">Helvetica</option>
                     <option value="fantasy">fantasy</option>
                     <option value=">Georgia">Georgia</option>
+                    <option value="Verdana">Verdana</option>
+                    <option value="Times New Roman">Times New Roman</option>
                 </select>
-           
-            <div class="bui_container">
-                <input type="button" value="B">
-                <input type="button" value="I">
-                <input type="button" value="U">
+
+                <div class="bui_container">
+                    <input type="button" value="B">
+                    <input type="button" value="I">
+                    <input type="button" value="U">
+                </div>
             </div>
-        </div>
-        <div class="subgroup">
-            
-                <select  id="font_size" class="font_size">
-                    <option value="8">08</option>
-                    <option value="10">10</option>
+            <div class="subgroup">
+
+                <select id="font_size" class="font_size">
                     <option value="12">12</option>
-                    <option value="14">14</option>
                     <option value="16">16</option>
                     <option value="18">18</option>
-                    <option value="20">20</option>
+                    <option value="24">24</option>
+                    <option value="28">28</option>
+                    <option value="30">30</option>
+                    <option value="34">34</option>
                 </select>
-            
-            <div class="color_container">
-                <input type="color"  id="color">
-                <input type="color"  id="bg_color">
+
+                <div class="color_container">
+                    <input type="color" id="color">
+                    <input type="color" id="bg_color">
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="alignment_container">
-        <input type="button" value="L" class="left">
-        <input type="button" value="C" class="center">
-        <input type="button" value="R" class="right">
+        <div class="alignment_container">
+            <input type="button" value="L" class="left">
+            <input type="button" value="C" class="center">
+            <input type="button" value="R" class="right">
+        </div>
     </div>
-</div> 
     <div class="formulae_container">
 
         <input type="text" class="address_box" readonly>
@@ -63,13 +67,13 @@
     </div>
     <div class="grid_container">
         <div class="top_left_block">
-            
+
         </div>
         <div class="top_row">
             <div class="col"></div>
         </div>
         <div class="left_col">
-            
+
         </div>
         <div class="grid">
             <div class="col"></div>
@@ -80,10 +84,11 @@
             <i class="fas fa-plus icon"></i>
         </div>
         <div class="sheet_list">
-        <div class="sheet active_sheet" sheetIdx="0">Sheet 1</div>
-    </div>
+            <div class="sheet active_sheet" sheetIdx="0">Sheet 1</div>
+        </div>
     </div>
     <script src="./init.js"></script>
     <script src="./app.js" defer></script>
 </body>
-</html>  
+
+</html>
