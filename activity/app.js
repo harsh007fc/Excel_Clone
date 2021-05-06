@@ -13,7 +13,7 @@ let italicBtn = document.querySelector(".italic");
 let underlineBtn = document.querySelector(".underline");
 let textColor = document.querySelector("#color");
 let bgColor = document.querySelector("#bg_color");
-allCells[0].click();  //default selected cell
+
 
 firstSheet.addEventListener("click", handleActiveSheet);
 addBtnContainer.addEventListener("click", function () {
@@ -55,6 +55,7 @@ for (let i = 0; i < allCells.length; i++) {
         addressBar.value = address;
     })
 }
+allCells[0].click();  //default selected cell
 
 
 //align mbuttons
@@ -150,9 +151,9 @@ textColor.addEventListener("change",function(){
 
 
 bgColor.addEventListener("change",function(){
-    let colorValue = textColor.value; 
+    let bgcolorValue = bgColor.value; 
     let address = addressBar.value;
     let { rid, cid } = getRidCid(address);
     let cell = document.querySelector(`.col[rid="${rid}"][cid="${cid}"]`);
-    cell.style.backgroundColor = colorValue;
+    cell.style.backgroundColor = bgcolorValue;
 })

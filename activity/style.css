@@ -168,7 +168,7 @@ body{
 
 .top_row{
     height:30px;
-    background-color: lightgreen;
+    background-color: #218c74;
     display: flex;
     position:absolute;
     top:0px;
@@ -182,7 +182,7 @@ body{
 }
 .left_col_box{
     height:30px;
-    background-color: lightgreen;
+    background-color: #218c74;
     text-align: center;
     border:1px solid;
 }
