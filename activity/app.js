@@ -8,6 +8,9 @@ let centerBtn = document.querySelector(".center");
 let rightBtn = document.querySelector(".right");
 let fontBtn = document.querySelector(".font_size");
 let fontFamily = document.querySelector(".font_family");
+let boldBtn = document.querySelector(".bold");
+let italicBtn = document.querySelector(".italic");
+let underlineBtn = document.querySelector(".underline");
 allCells[0].click();  //default selected cell
 
 firstSheet.addEventListener("click", handleActiveSheet);
@@ -108,4 +111,28 @@ fontFamily.addEventListener("change", function () {
     let { rid, cid } = getRidCid(address);
     let cell = document.querySelector(`.col[rid="${rid}"][cid="${cid}"]`);
     cell.style.fontFamily = family;
+})
+
+
+boldBtn.addEventListener("click",function(){
+    let address = addressBar.value;
+    let { rid, cid } = getRidCid(address);
+    let cell = document.querySelector(`.col[rid="${rid}"][cid="${cid}"]`);
+    cell.style.fontWeight = "bold";
+})
+
+
+italicBtn.addEventListener("click",function(){
+    let address = addressBar.value;
+    let { rid, cid } = getRidCid(address);
+    let cell = document.querySelector(`.col[rid="${rid}"][cid="${cid}"]`);
+    cell.style.fontStyle = "italic";
+})
+
+
+underlineBtn.addEventListener("click",function(){
+    let address = addressBar.value;
+    let { rid, cid } = getRidCid(address);
+    let cell = document.querySelector(`.col[rid="${rid}"][cid="${cid}"]`);
+    cell.style.textDecoration = "underline";
 })
