@@ -13,9 +13,10 @@ let italicBtn = document.querySelector(".italic");
 let underlineBtn = document.querySelector(".underline");
 let textColor = document.querySelector("#color");
 let bgColor = document.querySelector("#bg_color");
-
-
 firstSheet.addEventListener("click", handleActiveSheet);
+
+
+// create sheets
 addBtnContainer.addEventListener("click", function () {
     let sheetsArr = document.querySelectorAll(".sheet");
     let lastSheetElem = sheetsArr[sheetsArr.length - 1];
@@ -31,7 +32,7 @@ addBtnContainer.addEventListener("click", function () {
     newSheet.addEventListener("click", handleActiveSheet)
 })
 
-
+// transfer active class on active class
 function handleActiveSheet(e) {
     let mySheet = e.currentTarget;
     let sheetsArr = document.querySelectorAll(".sheet");
@@ -44,7 +45,7 @@ function handleActiveSheet(e) {
     }
 }
 
-
+// set address on the click of the cell
 for (let i = 0; i < allCells.length; i++) {
     allCells[i].addEventListener("click", function handleCells() {
         let rid = Number(allCells[i].getAttribute("rid"));
@@ -55,6 +56,8 @@ for (let i = 0; i < allCells.length; i++) {
         addressBar.value = address;
     })
 }
+
+// to emulate starting click on (0,0) cell
 allCells[0].click();  //default selected cell
 
 
@@ -97,7 +100,7 @@ function getRidCid(address) {//A1
 
 }
 
-
+// font size change
 fontBtn.addEventListener("change", function () {
     let fontSize = fontBtn.value;
     let address = addressBar.value;
@@ -107,7 +110,7 @@ fontBtn.addEventListener("change", function () {
     cell.style.fontSize = fontSize + "px";
 })
 
-
+// fontfamily change
 fontFamily.addEventListener("change", function () {
     let family = fontFamily.value;
     let address = addressBar.value;
@@ -116,31 +119,60 @@ fontFamily.addEventListener("change", function () {
     cell.style.fontFamily = family;
 })
 
-
+// to make a text bold in cell
 boldBtn.addEventListener("click",function(){
+    let isActive = boldBtn.classList.contains("active_btn");
     let address = addressBar.value;
     let { rid, cid } = getRidCid(address);
     let cell = document.querySelector(`.col[rid="${rid}"][cid="${cid}"]`);
-    cell.style.fontWeight = "bold";
+    if(isActive == false){ //bold the text
+        cell.style.fontWeight = "bold";
+        boldBtn.classList.add("active_btn");
+    }
+    else{  //make text normal
+        cell.style.fontWeight = "normal";
+        boldBtn.classList.remove("active_btn");
+    }
+   
 })
 
-
+// to make txt  italics in cell
 italicBtn.addEventListener("click",function(){
+    let isActive = italicBtn.classList.contains("active_btn");
     let address = addressBar.value;
     let { rid, cid } = getRidCid(address);
     let cell = document.querySelector(`.col[rid="${rid}"][cid="${cid}"]`);
-    cell.style.fontStyle = "italic";
+    if(isActive == false){
+        cell.style.fontStyle = "italic";
+        italicBtn.classList.add("active_btn");
+    }
+    else{
+        cell.style.fontStyle = "normal";
+        italicBtn.classList.remove("active_btn");
+    }
+   
 })
 
 
+// to underline text in cell
 underlineBtn.addEventListener("click",function(){
+    let isActive = underlineBtn.classList.contains("active_btn");
     let address = addressBar.value;
     let { rid, cid } = getRidCid(address);
     let cell = document.querySelector(`.col[rid="${rid}"][cid="${cid}"]`);
-    cell.style.textDecoration = "underline";
+   
+    if(isActive == false){
+        cell.style.textDecoration = "underline";
+        underlineBtn.classList.add("active_btn");
+    }
+    else{
+        cell.style.textDecoration = "normal";
+        underlineBtn.classList.remove("active_btn");
+    }
 })
 
 
+// to change text color of txt in  a cell
 textColor.addEventListener("change",function(){
     let colorValue = textColor.value; 
     let address = addressBar.value;
@@ -149,7 +181,7 @@ textColor.addEventListener("change",function(){
     cell.style.color = colorValue;
 })
 
-
+// to change bg color of cell clicked by us
 bgColor.addEventListener("change",function(){
     let bgcolorValue = bgColor.value; 
     let address = addressBar.value;

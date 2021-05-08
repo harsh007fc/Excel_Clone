@@ -34,7 +34,9 @@ body{
     width:25%;
 }
 
-
+.active_btn{
+    background-color: #218c74;
+}
 
 .formating_container{
     display: flex;
