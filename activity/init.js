@@ -23,25 +23,36 @@ for (let i = 0; i < 100; i++) {
 }
 grid.innerHTML = string;
 
-// sheet database started here
-let sheetDB = [];
-for(let i = 0; i < 100; i++){
-    let row = [];
-    for(let j = 0; j < 26; j++)
-    { ///this represent initial state of ui
-        let cell = {
-            bold:false,
-            italic:"normal",
-            underline:"none",
-            fontFamily:"Arial",
-            fontSize:"12",
-            halign:"left",
-            bgColor:"white",
-            textColor:"black"
-        };
-        row.push(cell);
-        // formatting
+
+
+    // worksheetDB -->3-d
+    let worksheetDB = [];
+// functiion
+function initCurrentSheetDb() {
+
+    // sheet database started here--> 2d
+    let sheetDB = [];
+    for (let i = 0; i < 100; i++) {
+        let row = [];
+        for (let j = 0; j < 26; j++) { ///this represent initial state of ui
+            let cell = {
+                bold: false,
+                italic: "normal",
+                underline: "none",
+                fontFamily: "Arial",
+                fontSize: "12px",
+                halign: "left",
+                bgColor: "#ffffff",
+                textColor: "#000000",
+                value:""
+            };
+            row.push(cell);
+            // formatting
+        }
+        sheetDB.push(row);
     }
-    sheetDB.push(row);
+    // console.log(sheetDB); //just to see it
+    worksheetDB.push(sheetDB);
+    console.log(worksheetDB);
 }
-// console.log(sheetDB); //just to see it
+initCurrentSheetDb(); // calling of abocve function

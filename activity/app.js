@@ -14,6 +14,7 @@ let underlineBtn = document.querySelector(".underline");
 let textColor = document.querySelector("#color");
 let bgColor = document.querySelector("#bg_color");
 let allAlignmentBtns = document.querySelectorAll(".alignment_container>*");
+let sheetDB = worksheetDB[0];
 firstSheet.addEventListener("click", handleActiveSheet);
 
 
@@ -26,10 +27,22 @@ addBtnContainer.addEventListener("click", function () {
     let newSheet = document.createElement("div");
     newSheet.setAttribute("class", "sheet");
     newSheet.setAttribute("sheetIdx", idx + 1);
-    newSheet.innerText = `Sheet ${idx + 2}`;
+    newSheet.innerText = `Sheet ${idx + 1}`;
     //page add
     sheetList.appendChild(newSheet);
 
+    // active sheet 
+    sheetsArr.forEach(function (sheet) {
+        sheet.classList.remove("active_sheet");
+    })
+    //to get present length after a mew sheet creation
+    sheetsArr = document.querySelectorAll(".sheet");
+    sheetsArr[sheetsArr.length - 1].classList.add("active_sheet");
+
+    initCurrentSheetDb();
+    sheetDB = worksheetDB[idx];
+    // empty the cells  and set their props to default
+    initUi();
     newSheet.addEventListener("click", handleActiveSheet)
 })
 
@@ -44,6 +57,10 @@ function handleActiveSheet(e) {
     if (!mySheet.classList[1]) {
         mySheet.classList.add("active_sheet");
     }
+    let sheetIdx = mySheet.getAttribute("sheetIdx");
+    sheetDB = worksheetDB[sheetIdx - 1];
+    // initUi();
+    setUi(sheetDB);
 }
 
 // set address on the click of the cell
@@ -272,3 +289,46 @@ bgColor.addEventListener("change", function () {
     let cellObj = sheetDB[rid][cid];
     cellObj.bgColor = bgcolorValue;
 })
+
+
+
+function initUi() {
+    for (let i = 0; i < allCells.length; i++) {
+        allCells[i].innerHTML = "";
+        allCells[i].style.fontWeight = "normal";
+        allCells[i].style.fontStyle = "normal";
+        allCells[i].style.textDecoration = "none";
+        allCells[i].style.fontFamily = "Arial";
+        allCells[i].style.fontSize = "12px";
+        allCells[i].style.textAlign = "left";
+        allCells[i].style.backgroundColor = "#ffffff";
+        allCells[i].style.color = "#000000";
+        allCells[i].innerText = "";
+
+    }
+}
+
+
+for (let i = 0; i < allCells.length; i++) {
+    allCells[i].addEventListener("blur", function handleCells() {
+        let address = addressBar.value;
+        let { rid, cid } = getRidCid(address);
+        let cell = document.querySelector(`.col[rid="${rid}"][cid="${cid}"]`);
+        let cellObj = sheetDB[rid][cid];
+        cellObj.value = cell.innerText;
+
+    })
+}
+
+
+function setUi(sheetDB){
+    console.log(sheetDB);
+    for(let i = 0; i < sheetDB.length; i++){
+        for(let j = 0;  j < sheetDB[i].length; j++){
+            let cell = document.querySelector(`.col[rid="${i}"][cid="${j}"]`);
+            let {bold,italic,underline,fontFamily,fontSize,halign,value} = sheetDB[i][j];
+            cell.style.fontWeight = bold==true?"bold":"normal"; 
+            cell.innerText = value;
+        }
+    }
+}
