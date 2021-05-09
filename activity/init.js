@@ -34,8 +34,10 @@ for(let i = 0; i < 100; i++){
             italic:"normal",
             underline:"none",
             fontFamily:"Arial",
-            fontSize:"10",
-            halign:"left"
+            fontSize:"12",
+            halign:"left",
+            bgColor:"white",
+            textColor:"black"
         };
         row.push(cell);
         // formatting

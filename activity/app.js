@@ -79,7 +79,7 @@ for (let i = 0; i < allCells.length; i++) {
         if(cellObj.underline == "underline"){
             underlineBtn.classList.add("active_btn");
         }else{
-            underlineBtn.classList.remove("active_btn");
+            underlineBtn.classList.remove ("active_btn");
         }
 
         // loop to remove all alignmets of cell
@@ -95,6 +95,17 @@ for (let i = 0; i < allCells.length; i++) {
             centerBtn.classList.add("active_btn");
         }
 
+        // for fontfamily
+        fontFamily.value = cellObj.fontFamily;
+
+        // for fontSize
+        fontBtn.value = cellObj.fontSize;
+
+        //for textcolor
+        textColor.value = cellObj.textColor;
+
+        //for bgcolor
+        bgColor.value = cellObj.bgColor;
     })
 }
 
@@ -162,8 +173,9 @@ fontBtn.addEventListener("change", function () {
     let address = addressBar.value;
     let { rid, cid } = getRidCid(address);
     let cell = document.querySelector(`.col[rid="${rid}"][cid="${cid}"]`);
-
     cell.style.fontSize = fontSize + "px";
+    let cellObj = sheetDB[rid][cid];
+    cellObj.fontSize = fontSize;
 })
 
 // fontfamily change
@@ -173,6 +185,8 @@ fontFamily.addEventListener("change", function () {
     let { rid, cid } = getRidCid(address);
     let cell = document.querySelector(`.col[rid="${rid}"][cid="${cid}"]`);
     cell.style.fontFamily = family;
+    let cellObj = sheetDB[rid][cid];
+    cellObj.fontFamily = family;
 })
 
 // to make a text bold in cell
@@ -244,6 +258,8 @@ textColor.addEventListener("change", function () {
     let { rid, cid } = getRidCid(address);
     let cell = document.querySelector(`.col[rid="${rid}"][cid="${cid}"]`);
     cell.style.color = colorValue;
+    let cellObj = sheetDB[rid][cid];
+    cellObj.textColor = colorValue;
 })
 
 // to change bg color of cell clicked by us
@@ -253,4 +269,6 @@ bgColor.addEventListener("change", function () {
     let { rid, cid } = getRidCid(address);
     let cell = document.querySelector(`.col[rid="${rid}"][cid="${cid}"]`);
     cell.style.backgroundColor = bgcolorValue;
+    let cellObj = sheetDB[rid][cid];
+    cellObj.bgColor = bgcolorValue;
 })
