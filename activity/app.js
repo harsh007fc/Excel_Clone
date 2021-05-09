@@ -62,13 +62,28 @@ for (let i = 0; i < allCells.length; i++) {
         //cell ki styling
 
         // for bold property bold
-        if(cellObj.bold == true){
+        if (cellObj.bold == true) {
             boldBtn.classList.add("active_btn");
-        }else{
+        } else {
             boldBtn.classList.remove("active_btn");
         }
 
-        for(let i = 0; i < allAlignmentBtns.length; i++){
+        //for italics property
+        if (cellObj.italic == "italic") {
+            italicBtn.classList.add("active_btn");
+        } else {
+            italicBtn.classList.remove("active_btn");
+        }
+
+        //for underline property
+        if(cellObj.underline == "underline"){
+            underlineBtn.classList.add("active_btn");
+        }else{
+            underlineBtn.classList.remove("active_btn");
+        }
+
+        // loop to remove all alignmets of cell
+        for (let i = 0; i < allAlignmentBtns.length; i++) {
             allAlignmentBtns[i].classList.remove("active_btn");
         }
         //for alignment
@@ -187,13 +202,16 @@ italicBtn.addEventListener("click", function () {
     let address = addressBar.value;
     let { rid, cid } = getRidCid(address);
     let cell = document.querySelector(`.col[rid="${rid}"][cid="${cid}"]`);
+    let cellObj = sheetDB[rid][cid];
     if (isActive == false) {
         cell.style.fontStyle = "italic";
         italicBtn.classList.add("active_btn");
+        cellObj.italic = "italic";
     }
     else {
         cell.style.fontStyle = "normal";
         italicBtn.classList.remove("active_btn");
+        cellObj.italic = "normal";
     }
 
 })
@@ -205,14 +223,16 @@ underlineBtn.addEventListener("click", function () {
     let address = addressBar.value;
     let { rid, cid } = getRidCid(address);
     let cell = document.querySelector(`.col[rid="${rid}"][cid="${cid}"]`);
-
+    let cellObj = sheetDB[rid][cid];
     if (isActive == false) {
         cell.style.textDecoration = "underline";
         underlineBtn.classList.add("active_btn");
+        cellObj.underline = "underline";
     }
     else {
         cell.style.textDecoration = "none";
         underlineBtn.classList.remove("active_btn");
+        cellObj.underline = "none";
     }
 })
 
