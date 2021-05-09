@@ -40,7 +40,7 @@ function initCurrentSheetDb() {
                 italic: "normal",
                 underline: "none",
                 fontFamily: "Arial",
-                fontSize: "12px",
+                fontSize: "16",
                 halign: "left",
                 bgColor: "#ffffff",
                 textColor: "#000000",

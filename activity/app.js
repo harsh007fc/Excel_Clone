@@ -299,7 +299,7 @@ function initUi() {
         allCells[i].style.fontStyle = "normal";
         allCells[i].style.textDecoration = "none";
         allCells[i].style.fontFamily = "Arial";
-        allCells[i].style.fontSize = "12px";
+        allCells[i].style.fontSize = "16";
         allCells[i].style.textAlign = "left";
         allCells[i].style.backgroundColor = "#ffffff";
         allCells[i].style.color = "#000000";
@@ -326,8 +326,15 @@ function setUi(sheetDB){
     for(let i = 0; i < sheetDB.length; i++){
         for(let j = 0;  j < sheetDB[i].length; j++){
             let cell = document.querySelector(`.col[rid="${i}"][cid="${j}"]`);
-            let {bold,italic,underline,fontFamily,fontSize,halign,value} = sheetDB[i][j];
+            let {bold,italic,underline,fontFamily,fontSize,bgColor,textColor,halign,value} = sheetDB[i][j];
             cell.style.fontWeight = bold==true?"bold":"normal"; 
+            cell.style.fontStyle= italic== true?"italic":"normal";
+            cell.style.fontDecoration= underline== true?"underline":"none";
+            cell.style.fontFamily = fontFamily;
+            cell.style.fontSize = fontSize;
+            cell.style.textAlign = halign;
+            cell.style.color = textColor;
+            cell.style.backgroundColor = bgColor;
             cell.innerText = value;
         }
     }
