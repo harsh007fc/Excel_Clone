@@ -13,6 +13,7 @@ let italicBtn = document.querySelector(".italic");
 let underlineBtn = document.querySelector(".underline");
 let textColor = document.querySelector("#color");
 let bgColor = document.querySelector("#bg_color");
+let allAlignmentBtns = document.querySelectorAll(".alignment_container>*");
 firstSheet.addEventListener("click", handleActiveSheet);
 
 
@@ -54,6 +55,31 @@ for (let i = 0; i < allCells.length; i++) {
         let colAdd = String.fromCharCode(cid + 65);
         let address = colAdd + rowAdd;
         addressBar.value = address;
+        let cellObj = sheetDB[rid][cid];
+        //styling set kro
+        //object ki styling
+        //fir ui styling
+        //cell ki styling
+
+        // for bold property bold
+        if(cellObj.bold == true){
+            boldBtn.classList.add("active_btn");
+        }else{
+            boldBtn.classList.remove("active_btn");
+        }
+
+        for(let i = 0; i < allAlignmentBtns.length; i++){
+            allAlignmentBtns[i].classList.remove("active_btn");
+        }
+        //for alignment
+        if (cellObj.halign == "left") {//left active
+            leftBtn.classList.add("active_btn");
+        } else if (cellObj.halign == "right") {
+            rightBtn.classList.add("active_btn");
+        } else if (cellObj.halign == "center") {
+            centerBtn.classList.add("active_btn");
+        }
+
     })
 }
 
@@ -66,8 +92,13 @@ leftBtn.addEventListener("click", function () {
     let address = addressBar.value;
     let { rid, cid } = getRidCid(address);
     let cell = document.querySelector(`.col[rid="${rid}"][cid="${cid}"]`);
-
     cell.style.textAlign = "left";
+    for(let i = 0; i < allAlignmentBtns.length; i++){
+        allAlignmentBtns[i].classList.remove("active_btn");
+    }
+    leftBtn.classList.add("active_btn");
+    let cellObj = sheetDB[rid][cid];  //sheetDb updated here
+    cellObj.halign = "left";
 })
 
 
@@ -75,8 +106,13 @@ centerBtn.addEventListener("click", function () {
     let address = addressBar.value;
     let { rid, cid } = getRidCid(address);
     let cell = document.querySelector(`.col[rid="${rid}"][cid="${cid}"]`);
-
     cell.style.textAlign = "center";
+    for(let i = 0; i < allAlignmentBtns.length; i++){
+        allAlignmentBtns[i].classList.remove("active_btn");
+    }
+    centerBtn.classList.add("active_btn");
+    let cellObj = sheetDB[rid][cid];  //sheetDb updated here
+    cellObj.halign = "center";
 })
 
 
@@ -84,8 +120,13 @@ rightBtn.addEventListener("click", function () {
     let address = addressBar.value;
     let { rid, cid } = getRidCid(address);
     let cell = document.querySelector(`.col[rid="${rid}"][cid="${cid}"]`);
-
     cell.style.textAlign = "right";
+    for(let i = 0; i < allAlignmentBtns.length; i++){
+        allAlignmentBtns[i].classList.remove("active_btn");
+    }
+    rightBtn.classList.add("active_btn");
+    let cellObj = sheetDB[rid][cid];  //sheetDb updated here
+    cellObj.halign = "right";
 })
 
 
@@ -120,61 +161,65 @@ fontFamily.addEventListener("change", function () {
 })
 
 // to make a text bold in cell
-boldBtn.addEventListener("click",function(){
+boldBtn.addEventListener("click", function () {
     let isActive = boldBtn.classList.contains("active_btn");
     let address = addressBar.value;
     let { rid, cid } = getRidCid(address);
     let cell = document.querySelector(`.col[rid="${rid}"][cid="${cid}"]`);
-    if(isActive == false){ //bold the text
+    let cellObj = sheetDB[rid][cid];
+    if (isActive == false) { //bold the text
         cell.style.fontWeight = "bold";
         boldBtn.classList.add("active_btn");
+        cellObj.bold = true;
     }
-    else{  //make text normal
+    else {  //make text normal
         cell.style.fontWeight = "normal";
         boldBtn.classList.remove("active_btn");
+        cellObj.bold = false;
     }
-   
+
 })
+// console.log(sheetDB);
 
 // to make txt  italics in cell
-italicBtn.addEventListener("click",function(){
+italicBtn.addEventListener("click", function () {
     let isActive = italicBtn.classList.contains("active_btn");
     let address = addressBar.value;
     let { rid, cid } = getRidCid(address);
     let cell = document.querySelector(`.col[rid="${rid}"][cid="${cid}"]`);
-    if(isActive == false){
+    if (isActive == false) {
         cell.style.fontStyle = "italic";
         italicBtn.classList.add("active_btn");
     }
-    else{
+    else {
         cell.style.fontStyle = "normal";
         italicBtn.classList.remove("active_btn");
     }
-   
+
 })
 
 
 // to underline text in cell
-underlineBtn.addEventListener("click",function(){
+underlineBtn.addEventListener("click", function () {
     let isActive = underlineBtn.classList.contains("active_btn");
     let address = addressBar.value;
     let { rid, cid } = getRidCid(address);
     let cell = document.querySelector(`.col[rid="${rid}"][cid="${cid}"]`);
-   
-    if(isActive == false){
+
+    if (isActive == false) {
         cell.style.textDecoration = "underline";
         underlineBtn.classList.add("active_btn");
     }
-    else{
-        cell.style.textDecoration = "normal";
+    else {
+        cell.style.textDecoration = "none";
         underlineBtn.classList.remove("active_btn");
     }
 })
 
 
 // to change text color of txt in  a cell
-textColor.addEventListener("change",function(){
-    let colorValue = textColor.value; 
+textColor.addEventListener("change", function () {
+    let colorValue = textColor.value;
     let address = addressBar.value;
     let { rid, cid } = getRidCid(address);
     let cell = document.querySelector(`.col[rid="${rid}"][cid="${cid}"]`);
@@ -182,8 +227,8 @@ textColor.addEventListener("change",function(){
 })
 
 // to change bg color of cell clicked by us
-bgColor.addEventListener("change",function(){
-    let bgcolorValue = bgColor.value; 
+bgColor.addEventListener("change", function () {
+    let bgcolorValue = bgColor.value;
     let address = addressBar.value;
     let { rid, cid } = getRidCid(address);
     let cell = document.querySelector(`.col[rid="${rid}"][cid="${cid}"]`);
