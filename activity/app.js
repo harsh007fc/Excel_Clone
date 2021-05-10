@@ -176,15 +176,7 @@ rightBtn.addEventListener("click", function () {
 
 //to get back rowid and colid
 // its like reversing of oue task to converting of col no and row number into numbers
-function getRidCid(address) {//A1
-    let cellColAdr = address.charCodeAt(0);
-    let cellRowAdr = address.slice(1);
-    let cid = cellColAdr - 65;
-    let rid = Number(cellRowAdr) - 1;
-    return { rid, cid };
-
-}
-
+ 
 // font size change
 fontBtn.addEventListener("change", function () {
     let fontSize = fontBtn.value;
@@ -344,24 +336,63 @@ function setUi(sheetDB){
 
 // code for formulae 
 
-formulaInput.addEventListener("keydown",function (){
-    if(e.key == "Enter" && formula.value){
+formulaInput.addEventListener("keydown",function (e){
+    if(e.key == "Enter" && formulaInput.value != ""){
         let formula = formulaInput.value;
         //get current cell
-        let value = evaluate(formula);
+        let value = evaluateFormula(formula);
+        // alert(value);
         //change in ui
-        setUi(value);
+        let address = addressBar.value;
+        let { rid, cid } = getRidCid(address);
+        setUiByFormula(value , rid , cid);
         //db-->work
-        setContentInDb(value,formula);
+        // setContentInDb(value,formula);
         
     }
 })
 
 
+
 // formula evaluation function
-function evaluate(formula) {
+function evaluateFormula(formula) {
     //( A1 + A2 ) -->space seperated
     let formulaTokens = formula.split(" ");
+    // split
+    for(let i = 0; i < formulaTokens.length; i++)
+    {
+        let firstCharOfToken = formulaTokens[i].charCodeAt(0);
+        if(firstCharOfToken >= 65 && firstCharOfToken <= 90){
+            // console.log(formulaTokens[i]);
+            let {rid , cid} = getRidCid(formulaTokens[i]);
+            let cellObj = sheetDB[rid][cid];
+            let { value } = cellObj;
+            formula = formula.replace(formulaTokens[i],value); 
+        }
+    }
+    // yahaan infix recomended hai eval nhi
+    let ans = eval(formula);
+    return ans;
+    // console.log(formula);
     //[(,A1,+,A2,)]-->split space ke basis pr
     //dc-->A1,A2;
 }
+
+
+function setUiByFormula(value,rid,cid){
+    document.querySelector(`.col[rid="${rid}"][cid="${cid}"]`).innerText = value;
+
+}
+
+
+// **************************helper function
+
+function getRidCid(address) {//A1
+    let cellColAdr = address.charCodeAt(0);
+    let cellRowAdr = address.slice(1);
+    let cid = cellColAdr - 65;
+    let rid = Number(cellRowAdr) - 1;
+    return { rid, cid };
+
+}
+
