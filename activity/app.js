@@ -1,4 +1,4 @@
-let addBtnContainer = document.querySelector(".add_sheet_container");
+ let addBtnContainer = document.querySelector(".add_sheet_container");
 let sheetList = document.querySelector(".sheet_list");
 let firstSheet = document.querySelector(".sheet");
 let allCells = document.querySelectorAll(".grid .col");
@@ -14,6 +14,7 @@ let underlineBtn = document.querySelector(".underline");
 let textColor = document.querySelector("#color");
 let bgColor = document.querySelector("#bg_color");
 let allAlignmentBtns = document.querySelectorAll(".alignment_container>*");
+let formulaInput = document.querySelector(".formulae_box");
 let sheetDB = worksheetDB[0];
 firstSheet.addEventListener("click", handleActiveSheet);
 
@@ -338,4 +339,29 @@ function setUi(sheetDB){
             cell.innerText = value;
         }
     }
+}
+
+
+// code for formulae 
+
+formulaInput.addEventListener("keydown",function (){
+    if(e.key == "Enter" && formula.value){
+        let formula = formulaInput.value;
+        //get current cell
+        let value = evaluate(formula);
+        //change in ui
+        setUi(value);
+        //db-->work
+        setContentInDb(value,formula);
+        
+    }
+})
+
+
+// formula evaluation function
+function evaluate(formula) {
+    //( A1 + A2 ) -->space seperated
+    let formulaTokens = formula.split(" ");
+    //[(,A1,+,A2,)]-->split space ke basis pr
+    //dc-->A1,A2;
 }
