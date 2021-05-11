@@ -44,7 +44,9 @@ function initCurrentSheetDb() {
                 halign: "left",
                 bgColor: "#ffffff",
                 textColor: "#000000",
-                value:""
+                value:"",
+                children:[],
+                formula:""
             };
             row.push(cell);
             // formatting
